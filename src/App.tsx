@@ -1,25 +1,50 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import QRPage from './components/QRPage';
+import { DocumentManager } from './DocumentManager';
+import AutoPage from './components/AutoPage';
+import Footer from './components/Footer';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import createTheme from '@mui/material/styles/createTheme';
+import TelePage from './components/TelePage';
+import DrivingPage from './components/DrivingPage';
 
 function App() {
+  const documentManager = new DocumentManager();
+  const DocumentManagerContext = React.createContext<DocumentManager>(documentManager);
+  
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ThemeProvider theme={darkTheme}>
+    <DocumentManagerContext.Provider value={documentManager}>
+    <div className="App" style={{
+                height:'100%',
+                width:'100%',
+                display:'flex',
+                flexDirection:'column-reverse',
+                position: 'absolute',
+                bottom:0,
+                background: 'var(--background)'
+            }}>
+      <Footer></Footer>
+      <div style={{flexGrow:1}}>
+      <AutoPage></AutoPage>
+      <TelePage></TelePage>
+      <DrivingPage></DrivingPage>
+      <QRPage></QRPage>
+      </div>
+      
+      {/*  */}
+      
     </div>
+    </DocumentManagerContext.Provider>
+    </ThemeProvider>
   );
 }
 
