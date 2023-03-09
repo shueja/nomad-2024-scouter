@@ -4,6 +4,7 @@ import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
 import { observer } from 'mobx-react';
 import { Button } from '@mui/material';
+import styles from './QRPage.module.css'
 
 type Props = {}
 
@@ -31,7 +32,9 @@ class QRPage extends Component<Props, State> {
       this.options.text = this.context.data.qr();
       if(this.qrCodeRef.current) {
           this.qrCodeRef.current.replaceChildren();
-          new QRCode(this.qrCodeRef.current, this.options);
+          let qrcode = new QRCode(this.qrCodeRef.current, this.options);
+
+          
       }
     })
   }
@@ -44,11 +47,12 @@ class QRPage extends Component<Props, State> {
     return (
       <>
         <div style={{display: (this.context.data.page == 5) ? "block": "none"}}>
-          <div ref={this.qrCodeRef}></div>
+        <Button variant="contained" onClick={(e)=>this.context.data.reset()}>RESET</Button>
 
-          <Button variant="contained" onClick={(e)=>this.context.data.reset()}>RESET</Button>
+<div>{`${this.context.data.initials}: ${this.context.data.team}, Match ${this.context.data.match}`}</div>
+          <div className={styles.QRDiv} style={{maxWidth: "95vw", height:"auto", margin:"auto"}} ref={this.qrCodeRef}></div>
 
-          <div style={{fontSize:"50%"}}>{this.context.data.qr()}</div>
+          
         </div>
       </>
     )

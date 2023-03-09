@@ -24,6 +24,7 @@ class Footer extends Component<Props, State> {
                     display:"flex",
                     flexDirection:"row",
                     justifyContent:"space-between",
+                    minHeight: "64px"
                 }}>
                     <Button size="large" variant="contained" style={{width: "2cm", height:"100%", minHeight: "2cm", backgroundColor:'#7d73e7'}} onClick={()=>this.context.data.prevPage()}>
                         <KeyboardArrowLeft></KeyboardArrowLeft>

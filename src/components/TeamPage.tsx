@@ -62,7 +62,7 @@ class TeamPage extends Component<Props, State> {
              </Select>
             }
 
-            <TextField label="Event Code" variant="outlined" value={this.context.data.event} onChange={(e)=>{
+            <TextField label="Event Code" variant="outlined" disabled value={this.context.data.event} onChange={(e)=>{
                 this.context.data.setEventCode(e.target.value);
                 this.refreshEvent();
             }}></TextField>
