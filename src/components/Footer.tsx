@@ -23,15 +23,16 @@ class Footer extends Component<Props, State> {
                 <div style={{
                     display:"flex",
                     flexDirection:"row",
-                    justifyContent:"space-between"
+                    justifyContent:"space-between",
                 }}>
-                    <IconButton size="large" onClick={()=>this.context.data.prevPage()}>
+                    <Button size="large" variant="contained" style={{width: "2cm", height:"100%", minHeight: "2cm", backgroundColor:'#7d73e7'}} onClick={()=>this.context.data.prevPage()}>
                         <KeyboardArrowLeft></KeyboardArrowLeft>
-                    </IconButton>
-                    {this.labels[this.context.data.page % 6]}
-                    <IconButton size="large" onClick={()=>this.context.data.nextPage()}>
+                    </Button>
+                    <h1>{this.labels[this.context.data.page % 6]}</h1>
+                    
+                    <Button size="large" variant="contained" style={{width: "2cm", height:"100%", backgroundColor:'#7d73e7'}} onClick={()=>this.context.data.nextPage()}>
                         <KeyboardArrowRight></KeyboardArrowRight>
-                    </IconButton>
+                    </Button>
                 </div>
                 </AppBar>
 

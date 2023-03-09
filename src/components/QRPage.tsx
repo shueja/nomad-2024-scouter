@@ -3,6 +3,7 @@ import {autorun} from 'mobx'
 import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
 import { observer } from 'mobx-react';
+import { Button } from '@mui/material';
 
 type Props = {}
 
@@ -43,8 +44,11 @@ class QRPage extends Component<Props, State> {
     return (
       <>
         <div style={{display: (this.context.data.page == 5) ? "block": "none"}}>
-          <button onClick={()=>{this.context.data.autoCones.high.inc()}}>test</button>
           <div ref={this.qrCodeRef}></div>
+
+          <Button variant="contained" onClick={(e)=>this.context.data.reset()}>RESET</Button>
+
+          <div style={{fontSize:"50%"}}>{this.context.data.qr()}</div>
         </div>
       </>
     )

@@ -9,6 +9,8 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import TelePage from './components/TelePage';
 import DrivingPage from './components/DrivingPage';
+import TeamPage from './components/TeamPage';
+import NotesPage from './components/NotesPage';
 
 function App() {
   const documentManager = new DocumentManager();
@@ -24,19 +26,22 @@ function App() {
     <ThemeProvider theme={darkTheme}>
     <DocumentManagerContext.Provider value={documentManager}>
     <div className="App" style={{
-                height:'100%',
-                width:'100%',
+                
+                height:'100vh',
+                width:'100vw',
                 display:'flex',
-                flexDirection:'column-reverse',
+                flexDirection:'column',
                 position: 'absolute',
                 bottom:0,
                 background: 'var(--background)'
             }}>
       <Footer></Footer>
-      <div style={{flexGrow:1}}>
+      <div style={{flexGrow:1, marginTop:"20px"}}>
+      <TeamPage></TeamPage>
       <AutoPage></AutoPage>
       <TelePage></TelePage>
       <DrivingPage></DrivingPage>
+      <NotesPage></NotesPage>
       <QRPage></QRPage>
       </div>
       

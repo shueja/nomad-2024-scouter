@@ -7,7 +7,7 @@ var authKey = "9DZZQh1sNphG06vwCrX6tJXjucIGan6lGbXaiQ0q5T7qhDkzgYSAP83ekuLYhpWb"
  *
  * @param {eventCode} eventCode the event code (i.e. 2020caln) to pull the team list
  */
-function getTeams(eventCode) {
+export function getTeams(eventCode) {
 	if (authKey) {
 		var xmlhttp = new XMLHttpRequest();
 		var url = "https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams/simple";
@@ -45,12 +45,44 @@ function getTeams(eventCode) {
 	}
 }
 
+export function getTeamsForMatch(eventCode, matchNum, level) {
+ var matchData = getMatch(eventCode + "_" + level + matchNum);
+ if (matchData == null) {
+	return [];
+ } 
+ if ( !( "red" in matchData && "blue" in matchData)) {
+	return [];
+ }
+ return [
+	matchData.red.team_keys[0].replace("frc", ""),
+	matchData.red.team_keys[1].replace("frc", ""),
+	matchData.red.team_keys[2].replace("frc", ""),
+	matchData.blue.team_keys[0].replace("frc", ""),
+	matchData.blue.team_keys[1].replace("frc", ""),
+	matchData.blue.team_keys[2].replace("frc", ""),
+	
+ ]
+}
+
+
+function getMatch(matchKey){
+	//This needs to be different than getTeamName() because of how JS stores their data
+	if(matchKey !== undefined){
+		if (schedule) {
+			var ret = {};
+			Array.from(schedule).forEach(match => ret = match.key == matchKey ? match.alliances : ret);
+			console.log(ret)
+			return ret;
+		}
+	}
+	return null;
+}
 /**
  * Get schefule for event
  *
  * @param {eventCode} eventCode the event code (i.e. 2020caln) to pull the team list
  */
-function getSchedule(eventCode) {
+export function getSchedule(eventCode) {
 	if (authKey) {
 		var xmlhttp = new XMLHttpRequest();
 		var url = "https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches/simple";
@@ -62,7 +94,7 @@ function getSchedule(eventCode) {
 				var response = this.responseText;
 				schedule = JSON.parse(response);
 				window.localStorage.setItem(`${eventCode}-schedule`, response);
-				document.getElementById("fetch-status").innerText = `Fetched: ${eventCode}`; 
+				return 0;
 				}
 				else if (this.status == 0) {
 					console.log("could not reach TBA");
@@ -70,10 +102,11 @@ function getSchedule(eventCode) {
 					if(scheduleStr != null) {
 						console.log("Found schedule in local storage.");
 						schedule = JSON.parse(scheduleStr);
-						document.getElementById("fetch-status").innerText = `Fetched: ${eventCode}`; 
+						return 0;
 					}
 					else {
 						schedule = {};
+						return 1;
 					}
 				}
 			}
