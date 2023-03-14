@@ -49,7 +49,7 @@ class QRPage extends Component<Props, State> {
         <div style={{display: (this.context.data.page == 5) ? "block": "none"}}>
         <Button variant="contained" onClick={(e)=>this.context.data.reset()}>RESET</Button>
 
-<div>{`${this.context.data.initials}: ${this.context.data.team}, Match ${this.context.data.match}`}</div>
+        <div>{`${this.context.data.initials}: ${this.context.data.team}, Match ${this.context.data.match}`}</div>
           <div className={styles.QRDiv} style={{maxWidth: "95vw", height:"auto", margin:"auto"}} ref={this.qrCodeRef}></div>
 
           

@@ -43,18 +43,18 @@ class TelePage extends Component<Props, State> {
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>
             <FormControlLabel
                 labelPlacement='bottom'
-                control={<Checkbox />} label="Played Defense" 
+                control={<Checkbox checked={this.context.data.playedDefense}/>} label="Played Defense" 
                 style={{flex:"0 0 25%"}}
                 value={this.context.data.playedDefense} onChange={(e, val)=>{this.context.data.setPlayedDefense(val)}}/>
               <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
-                control={<Checkbox />} label="On Platform" 
+                control={<Checkbox checked={this.context.data.teleDock}/>} label="On Platform" 
                 value={this.context.data.teleDock} onChange={(e, val)=>{this.context.data.setTeleDock(val)}}/>
               <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
-                control={<Checkbox />} disabled={!this.context.data.teleDock} label="Level Platform"
+                control={<Checkbox checked={this.context.data.teleLevel}/>} disabled={!this.context.data.teleDock} label="Level Platform"
                 value={this.context.data.teleLevel} onChange={(e, val)=>{this.context.data.setTeleLevel(val)}} />
             </FormGroup>
             </div>        

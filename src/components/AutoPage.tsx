@@ -45,17 +45,18 @@ class AutoPage extends Component<Props, State> {
               <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
-                control={<Checkbox />} label="Cross Line"
+                control={<Checkbox checked={this.context.data.autoCrossed}/>} label="Cross Line"
                 value={this.context.data.autoCrossed} onChange={(e, val)=>{this.context.data.setAutoCross(val)}} />
               <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
-                control={<Checkbox />} label="On Platform" 
+                control={<Checkbox checked={this.context.data.autoDock}/>} label="On Platform" 
                 value={this.context.data.autoDock} onChange={(e, val)=>{this.context.data.setAutoDock(val)}}/>
               <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
-                control={<Checkbox />} disabled={!this.context.data.autoDock} label="Level Platform"
+                
+                control={<Checkbox checked={this.context.data.autoLevel}/>} disabled={!this.context.data.autoDock} label="Level Platform"
                 value={this.context.data.autoLevel} onChange={(e, val)=>{this.context.data.setAutoLevel(val)}} />
             </FormGroup>
             </div>        
