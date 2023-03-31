@@ -2,7 +2,7 @@ import React, { Component, RefObject } from 'react'
 import {observer} from 'mobx-react'
 import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, FormControlLabel, FormGroup, IconButton } from '@mui/material';
+import { Badge, Button, Checkbox, Divider, FormControlLabel, FormGroup, IconButton, Radio, RadioGroup } from '@mui/material';
 import { Square } from '@mui/icons-material';
 import PieceList from './PieceList';
 
@@ -44,19 +44,24 @@ class TelePage extends Component<Props, State> {
             <FormControlLabel
                 labelPlacement='bottom'
                 control={<Checkbox checked={this.context.data.playedDefense}/>} label="Played Defense" 
-                style={{flex:"0 0 25%"}}
+                style={{flex:"1 0 25%"}}
                 value={this.context.data.playedDefense} onChange={(e, val)=>{this.context.data.setPlayedDefense(val)}}/>
-              <FormControlLabel
-                style={{flex:"0 0 25%"}}
-                labelPlacement='bottom'
-                control={<Checkbox checked={this.context.data.teleDock}/>} label="On Platform" 
-                value={this.context.data.teleDock} onChange={(e, val)=>{this.context.data.setTeleDock(val)}}/>
-              <FormControlLabel
-                style={{flex:"0 0 25%"}}
-                labelPlacement='bottom'
-                control={<Checkbox checked={this.context.data.teleLevel}/>} disabled={!this.context.data.teleDock} label="Level Platform"
-                value={this.context.data.teleLevel} onChange={(e, val)=>{this.context.data.setTeleLevel(val)}} />
             </FormGroup>
+            <Divider>Climb</Divider>
+            <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>
+              <RadioGroup
+                row
+                value={this.context.data.teleClimb}
+                onChange={(e, val)=>{this.context.data.setTeleClimb(Number.parseInt(e.target.value) || 0)}}
+                style={{margin:"auto"}}
+              >
+                <FormControlLabel value={-1} control={<Radio />} label="Fail" labelPlacement="bottom"/>
+                <FormControlLabel value={0} control={<Radio />} label="No Try" labelPlacement="bottom"/>
+                <FormControlLabel value={1} control={<Radio />} label="On" labelPlacement="bottom"/>
+                <FormControlLabel value={2} control={<Radio />} label="Level" labelPlacement="bottom"/>
+
+              </RadioGroup>
+              </FormGroup>
             </div>        
             
         </div>

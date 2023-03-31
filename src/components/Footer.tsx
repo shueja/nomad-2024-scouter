@@ -16,7 +16,7 @@ type State = {}
 class Footer extends Component<Props, State> {
     static contextType = DocumentManagerContext;
     declare context: React.ContextType<typeof DocumentManagerContext>;
-    labels = ["Team", "Auto", "Tele", "Driving", "Notes", "Scan"]
+    labels = ["Team", "Auto", "Tele", "Driving", "Scan"]
     render() {
         return <>
                 <AppBar position="static">

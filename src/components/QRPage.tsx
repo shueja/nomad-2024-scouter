@@ -46,7 +46,7 @@ class QRPage extends Component<Props, State> {
   render() {    
     return (
       <>
-        <div style={{display: (this.context.data.page == 5) ? "block": "none"}}>
+        <div style={{display: (this.context.data.page == 4) ? "block": "none"}}>
         <Button variant="contained" onClick={(e)=>this.context.data.reset()}>RESET</Button>
 
         <div>{`${this.context.data.initials}: ${this.context.data.team}, Match ${this.context.data.match}`}</div>

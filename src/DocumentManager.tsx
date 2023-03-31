@@ -57,13 +57,13 @@ export interface IPieceListStore
   extends Instance<typeof PieceListStore> {}
 
 export const Ratings = types.model({
-    efficiency:-1,
-    control:-1,
-    precision:-1,
-    intakeCube: -1,
-    intakeCone: -1,
-    placeCube: -1,
-    placeCone: -1
+    efficiency:0,
+    control:0,
+    precision:0,
+    intakeCube: 0,
+    intakeCone: 0,
+    placeCube: 0,
+    placeCone: 0
 }).actions((self)=>{
     return {
         setEfficiency(val:number) { self.efficiency = val},
@@ -101,10 +101,8 @@ export const DataStore = types
     teleCones: PieceListStore,
     teleCubes: PieceListStore,
     autoCrossed: false,
-    autoDock: false,
-    autoLevel:false,
-    teleDock: false,
-    teleLevel: false,
+    autoClimb:0,
+    teleClimb:0,
 
     playedDefense: false,
     rate: Ratings,
@@ -125,10 +123,8 @@ export const DataStore = types
             self.teleCones.reset();
             self.teleCubes.reset();
             self.autoCrossed = false;
-            self.autoDock = false;
-            self.autoLevel = false;
-            self.teleDock = false;
-            self.teleLevel = false;
+            self.autoClimb = 0;
+            self.teleClimb = 0;
             self.playedDefense = false;
             self.rate.reset();
             self.comments = "";
@@ -162,29 +158,23 @@ export const DataStore = types
             self.page = page;
         },
         nextPage() {
-            self.page = (self.page + 1) % 6;
+            self.page = (self.page + 1) % 5;
         },
         prevPage() {
-            self.page = (self.page - 1) % 6;
+            self.page = (self.page - 1) % 5;
             if (self.page == -1) {
-                self.page = 5;
+                self.page = 4;
             }
             console.log(self.page)
         },
         setAutoCross(autoCross: boolean) {
             self.autoCrossed = autoCross
         },
-        setAutoDock(autoDock:boolean) {
-            self.autoDock = autoDock
+        setAutoClimb(autoClimb:number) {
+            self.autoClimb = autoClimb
         },
-        setAutoLevel(autoLevel:boolean) {
-            self.autoLevel = autoLevel
-        },
-        setTeleDock(teleDock:boolean) {
-            self.teleDock = teleDock
-        },
-        setTeleLevel(teleLevel:boolean) {
-            self.teleLevel = teleLevel
+        setTeleClimb(teleClimb:number) {
+            self.teleClimb = teleClimb
         },
         setComments(comments: string) {
             self.comments = comments;
@@ -201,9 +191,9 @@ export const DataStore = types
             text += `i=${self.initials}&t=${self.team}&m=${self.match}&l=${self.level}&`;
             // auto
             text += self.autoCones.qr() + self.autoCubes.qr();
-            text += `am=${self.autoCrossed ? 1 : 0}&acs=${self.autoDock ? (self.autoLevel ? 2 : 1) : 0}&`
+            text += `am=${self.autoCrossed ? 1 : 0}&acs=${self.autoClimb}&`
             text += self.teleCones.qr() + self.teleCubes.qr();
-            text += `pd=${self.playedDefense ? 1 : 0}&tcs=${self.teleDock ? (self.teleLevel ? 2 : 1) : 0}&`
+            text += `pd=${self.playedDefense ? 1 : 0}&tcs=${self.teleClimb}&`
             text += self.rate.qr();
 
             var comments = self.comments.replaceAll('\n', "|").replaceAll('&', "[and]").replaceAll('=', '[equals]');
@@ -219,7 +209,7 @@ export const DataStore = types
 
 export class DocumentManager {
     data = DataStore.create({
-        event: "2023cave",
+        event: "2023nvlv",
         autoCones: PieceListStore.create({
             high:{label:"ahn"},
             mid:{label: "amn"},

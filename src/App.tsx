@@ -10,7 +10,11 @@ import createTheme from '@mui/material/styles/createTheme';
 import TelePage from './components/TelePage';
 import DrivingPage from './components/DrivingPage';
 import TeamPage from './components/TeamPage';
+import { TextField } from '@mui/material';
+import { observer } from 'mobx-react';
 import NotesPage from './components/NotesPage';
+
+
 
 function App() {
   const documentManager = new DocumentManager();
@@ -41,10 +45,9 @@ function App() {
       <AutoPage></AutoPage>
       <TelePage></TelePage>
       <DrivingPage></DrivingPage>
-      <NotesPage></NotesPage>
       <QRPage></QRPage>
       </div>
-      
+          <NotesPage></NotesPage>
       {/*  */}
       
     </div>
@@ -53,4 +56,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

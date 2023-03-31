@@ -29,12 +29,10 @@ class DrivingPage extends Component<Props, State> {
 
   render() {    
     return (
-      <>
-        <div style={{display: (this.context.data.page == 4) ? "block": "none"}}>
+        <div style={{display: (this.context.data.page != 4) ? "block": "none"}}>
             <TextField multiline label="Comments" fullWidth value={this.context.data.comments} onChange={(e)=>this.context.data.setComments(e.target.value)}></TextField>      
             
         </div>
-      </>
     )
   }
 }

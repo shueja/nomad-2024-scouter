@@ -3,7 +3,7 @@ import {autorun} from 'mobx'
 import {observer} from 'mobx-react'
 import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, FormControlLabel, FormGroup, IconButton } from '@mui/material';
+import { Badge, Button, Checkbox, Divider, FormControlLabel, FormGroup, IconButton, Radio, RadioGroup, TextField } from '@mui/material';
 import { Square } from '@mui/icons-material';
 import PieceList from './PieceList';
 
@@ -30,7 +30,7 @@ class AutoPage extends Component<Props, State> {
   render() {    
     return (
       <>
-        <div style={{display: (this.context.data.page == 1) ? "block": "none"}}>
+        <div style={{display: (this.context.data.page == 1) ? "block": "none", marginBottom:"10px"}}>
             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <PieceList pieceList={this.context.data.autoCones} color="yellow" undoSide='right'></PieceList>
               <div style={{display:"flex", flexDirection:"column", flexGrow:1, justifyContent:"space-around", fontSize: "200%"}}>
@@ -47,7 +47,23 @@ class AutoPage extends Component<Props, State> {
                 labelPlacement='bottom'
                 control={<Checkbox checked={this.context.data.autoCrossed}/>} label="Cross Line"
                 value={this.context.data.autoCrossed} onChange={(e, val)=>{this.context.data.setAutoCross(val)}} />
-              <FormControlLabel
+            </FormGroup>
+            <Divider>Climb</Divider>
+            <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>
+              <RadioGroup
+                row
+                value={this.context.data.autoClimb}
+                onChange={(e, val)=>{this.context.data.setAutoClimb(Number.parseInt(e.target.value) || 0)}}
+                style={{margin:"auto"}}
+              >
+                <FormControlLabel value={-1} control={<Radio />} label="Fail" labelPlacement="bottom"/>
+                <FormControlLabel value={0} control={<Radio />} label="No Try" labelPlacement="bottom"/>
+                <FormControlLabel value={1} control={<Radio />} label="On" labelPlacement="bottom"/>
+                <FormControlLabel value={2} control={<Radio />} label="Level" labelPlacement="bottom"/>
+
+              </RadioGroup>
+              </FormGroup>
+              {/* <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'
                 control={<Checkbox checked={this.context.data.autoDock}/>} label="On Platform" 
@@ -57,10 +73,8 @@ class AutoPage extends Component<Props, State> {
                 labelPlacement='bottom'
                 
                 control={<Checkbox checked={this.context.data.autoLevel}/>} disabled={!this.context.data.autoDock} label="Level Platform"
-                value={this.context.data.autoLevel} onChange={(e, val)=>{this.context.data.setAutoLevel(val)}} />
-            </FormGroup>
+                value={this.context.data.autoLevel} onChange={(e, val)=>{this.context.data.setAutoLevel(val)}} /> */}
             </div>        
-            
         </div>
       </>
     )

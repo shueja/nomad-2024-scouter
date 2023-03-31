@@ -57,8 +57,8 @@ class TeamPage extends Component<Props, State> {
                 }/>
             }
             {this.context.data.teams.length != 0 &&
-            <Select variant="outlined" label="Select Team" value={this.context.data.team} onChange={(e)=>this.context.data.setTeam(e.target.value)}>
-                {this.context.data.teams.map((value)=>{return <MenuItem value={value}>{value}</MenuItem>})}
+            <Select variant="outlined" style={{color:"white"}} label="Select Team"  value={this.context.data.team} onChange={(e)=>this.context.data.setTeam(e.target.value)}>
+                {this.context.data.teams.map((value)=>{return <MenuItem value={value} key={value}>{value}</MenuItem>})}
              </Select>
             }
 

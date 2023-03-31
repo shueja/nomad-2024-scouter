@@ -30,17 +30,18 @@ class DrivingPage extends Component<Props, State> {
   render() {    
     return (
       <>
-        <div style={{display: (this.context.data.page == 3) ? "block": "none"}}>
+        <div style={{display: (this.context.data.page == 3) ? "block": "none", marginBottom:"10px"}}>
             <div style={{display:"flex", flexDirection:"column", alignItems: "center", justifyContent:"space-around", gap: "20px"}}>
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.efficiency} onChange={(e, val)=>{this.context.data.rate.setEfficiency(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.efficiency} onChange={(e, val)=>{this.context.data.rate.setEfficiency(val || 0)}}/>}
                 label="Efficiency"
+                
                  />
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.precision} onChange={(e, val)=>{this.context.data.rate.setPrecision(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.precision} onChange={(e, val)=>{this.context.data.rate.setPrecision(val || 0)}}/>}
                 label="Precision"
                  />
             </FormGroup>
@@ -48,12 +49,12 @@ class DrivingPage extends Component<Props, State> {
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.intakeCone} onChange={(e, val)=>{this.context.data.rate.setIntakeCone(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.intakeCone} onChange={(e, val)=>{this.context.data.rate.setIntakeCone(val || 0)}}/>}
                 label="Cone"
                  />
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.intakeCube} onChange={(e, val)=>{this.context.data.rate.setIntakeCube(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.intakeCube} onChange={(e, val)=>{this.context.data.rate.setIntakeCube(val || 0)}}/>}
                 label="Cube"
                  />
 
@@ -63,12 +64,12 @@ class DrivingPage extends Component<Props, State> {
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.placeCone} onChange={(e, val)=>{this.context.data.rate.setPlaceCone(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.placeCone} onChange={(e, val)=>{this.context.data.rate.setPlaceCone(val || 0)}}/>}
                 label="Cone"
                  />
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating value={this.context.data.rate.placeCube} onChange={(e, val)=>{this.context.data.rate.setPlaceCube(val || 0)}}/>}
+                control={<Rating max={3} size="large" value={this.context.data.rate.placeCube} onChange={(e, val)=>{this.context.data.rate.setPlaceCube(val || 0)}}/>}
                 label="Cube"
                  />
 
