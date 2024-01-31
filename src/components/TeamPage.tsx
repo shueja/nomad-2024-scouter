@@ -1,11 +1,7 @@
-import React, { Component, RefObject } from 'react'
-import {autorun} from 'mobx'
+import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, FormControlLabel, FormGroup, IconButton, MenuItem, Rating, Select, TextField } from '@mui/material';
-import { Square } from '@mui/icons-material';
-import PieceList from './PieceList';
+import { MenuItem, Select, TextField } from '@mui/material';
 import { getSchedule, getTeams } from '../TBAInterface';
 
 type Props = {}
@@ -17,11 +13,6 @@ class TeamPage extends Component<Props, State> {
     declare context: React.ContextType<typeof DocumentManagerContext>;
   state = {}
   
-  constructor(props: Props) {
-    super(props);
-
-  }
-
   componentDidMount() {
    this.refreshEvent();
   }

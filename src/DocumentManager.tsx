@@ -57,31 +57,25 @@ export interface IPieceListStore
   extends Instance<typeof PieceListStore> {}
 
 export const Ratings = types.model({
-    efficiency:0,
-    control:0,
-    precision:0,
-    intakeCube: 0,
-    intakeCone: 0,
-    placeCube: 0,
-    placeCone: 0
+    intake:0,
+    speed:0,
+    speaker:0,
+    amp: 0
 }).actions((self)=>{
     return {
-        setEfficiency(val:number) { self.efficiency = val},
-        setControl(val:number) { self.control = val},
-        setPrecision(val:number) { self.precision = val},
-        setIntakeCube(val:number) { self.intakeCube = val},
-        setIntakeCone(val:number) { self.intakeCone = val},
-        setPlaceCube(val:number) { self.placeCube = val},
-        setPlaceCone(val:number) { self.placeCone = val},
+        setIntake(val:number) {self.intake = val},
+        setSpeed(val:number) {self.speed = val},
+        setSpeaker(val: number) {self.speaker = val},
+        setAmp(val:number) {self.amp = val},
         reset() {
-            self.efficiency = self.control = self.precision = self.intakeCone = self.intakeCube = self.placeCone = self.placeCube = -1;
+            self.intake = self.speed = self.speaker = self.amp;
         }
 
     }
 }).views((self)=>{
     return {
         qr() {
-            return `re=${self.efficiency}&rc=${self.control}&rp=${self.precision}&rib=${self.intakeCube}&rin=${self.intakeCone}&rsb=${self.placeCube}&rsn=${self.placeCone}&`
+            return `ri=${self.intake}&rd=${self.speed}&rs=${self.speaker}&ra=${self.amp}&`
         }
     }
 })
@@ -96,12 +90,11 @@ export const DataStore = types
     match: "",
     level: "qm",
     page: 0,
-    autoCones: PieceListStore,
-    autoCubes: PieceListStore,
-    teleCones: PieceListStore,
-    teleCubes: PieceListStore,
+    autoSpeaker: NumberEntry,
+    autoAmp: NumberEntry,
+    teleSpeaker: NumberEntry,
+    teleAmp: NumberEntry,
     autoCrossed: false,
-    autoClimb:0,
     teleClimb:0,
 
     playedDefense: false,
@@ -118,12 +111,11 @@ export const DataStore = types
             self.team="";
             self.teams=cast([]);
             self.match="";
-            self.autoCones.reset();
-            self.autoCubes.reset();
-            self.teleCones.reset();
-            self.teleCubes.reset();
+            self.autoSpeaker.set(0);
+            self.autoAmp.set(0);
+            self.teleSpeaker.set(0);
+            self.teleAmp.set(0);
             self.autoCrossed = false;
-            self.autoClimb = 0;
             self.teleClimb = 0;
             self.playedDefense = false;
             self.rate.reset();
@@ -170,9 +162,6 @@ export const DataStore = types
         setAutoCross(autoCross: boolean) {
             self.autoCrossed = autoCross
         },
-        setAutoClimb(autoClimb:number) {
-            self.autoClimb = autoClimb
-        },
         setTeleClimb(teleClimb:number) {
             self.teleClimb = teleClimb
         },
@@ -190,10 +179,10 @@ export const DataStore = types
             // match info
             text += `i=${self.initials}&t=${self.team}&m=${self.match}&l=${self.level}&`;
             // auto
-            text += self.autoCones.qr() + self.autoCubes.qr();
-            text += `am=${self.autoCrossed ? 1 : 0}&acs=${self.autoClimb}&`
-            text += self.teleCones.qr() + self.teleCubes.qr();
-            text += `pd=${self.playedDefense ? 1 : 0}&tcs=${self.teleClimb}&`
+            text += `as=${self.autoSpeaker.value}&aa=${self.autoAmp.value}&`;
+            text += `am=${self.autoCrossed ? 1 : 0}&`
+            text += `ts=${self.teleSpeaker.value}&ta=${self.teleAmp.value}&`
+            text += `pd=${self.playedDefense ? 1 : 0}&tc=${self.teleClimb}&`
             text += self.rate.qr();
 
             var comments = self.comments.replaceAll('\n', "|").replaceAll('&', "[and]").replaceAll('=', '[equals]');
@@ -209,23 +198,11 @@ export const DataStore = types
 
 export class DocumentManager {
     data = DataStore.create({
-        event: "2023nvlv",
-        autoCones: PieceListStore.create({
-            high:{label:"ahn"},
-            mid:{label: "amn"},
-            low:{label: "aln"}}),
-        autoCubes: PieceListStore.create({
-                high:{label:"ahb"},
-                mid:{label: "amb"},
-                low:{label: "alb"}}),
-        teleCones: PieceListStore.create({
-            high:{label:"thn"},
-            mid:{label: "tmn"},
-            low:{label: "tln"}}),
-        teleCubes: PieceListStore.create({
-            high:{label:"thb"},
-            mid:{label: "tmb"},
-            low:{label: "tlb"}}),
+        event: "2023cabl",
+        autoSpeaker: NumberEntry.create(),
+        autoAmp: NumberEntry.create(),
+        teleSpeaker: NumberEntry.create(),
+        teleAmp: NumberEntry.create(),
         rate: Ratings.create({}),
         comments: ""
     });

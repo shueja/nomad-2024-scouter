@@ -1,10 +1,9 @@
-import React, { Component, RefObject } from 'react'
+import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, Divider, FormControlLabel, FormGroup, IconButton, Radio, RadioGroup } from '@mui/material';
-import { Square } from '@mui/icons-material';
+import { Checkbox, Divider, FormControlLabel, FormGroup, Radio, RadioGroup } from '@mui/material';
 import PieceList from './PieceList';
+import PieceEntry from './PieceEntry';
 
 type Props = {}
 
@@ -31,13 +30,9 @@ class TelePage extends Component<Props, State> {
       <>
         <div style={{display: (this.context.data.page == 2) ? "block": "none"}}>
             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
-              <PieceList pieceList={this.context.data.teleCones} color="yellow" undoSide='right'></PieceList>
-              <div style={{display:"flex", flexDirection:"column", flexGrow:1, justifyContent:"space-around", fontSize:"200%"}}>
-                <div>H</div>
-                <div>M</div>
-                <div>L</div>
-              </div>
-              <PieceList pieceList={this.context.data.teleCubes} color="purple" undoSide='left'></PieceList>
+              <PieceEntry piece={this.context.data.autoSpeaker} color="blue" undoSide='right'></PieceEntry>
+              <span>SPKR | AMP</span>
+              <PieceEntry piece={this.context.data.autoAmp} color="blue" undoSide='left'></PieceEntry>
             </div>
             <div >
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>

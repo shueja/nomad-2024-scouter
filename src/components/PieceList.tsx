@@ -1,10 +1,6 @@
-import React, { Component, RefObject } from 'react'
-import {autorun} from 'mobx'
+import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import QRCode from 'easyqrcodejs'
 import DocumentManagerContext, { IPieceListStore } from '../DocumentManager';
-import { Badge, Button, IconButton } from '@mui/material';
-import { Square, Clear } from '@mui/icons-material';
 import PieceEntry from './PieceEntry';
 
 type Props = {
@@ -20,11 +16,7 @@ class PieceList extends Component<Props, State> {
     static contextType = DocumentManagerContext;
     declare context: React.ContextType<typeof DocumentManagerContext>;
   state = {}
-  
-  constructor(props: Props) {
-    super(props);
 
-  }
 
   componentDidMount() {
   }

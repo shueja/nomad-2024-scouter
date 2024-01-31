@@ -1,11 +1,7 @@
-import React, { Component, RefObject } from 'react'
-import {autorun} from 'mobx'
+import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, Divider, FormControlLabel, FormGroup, FormHelperText, IconButton, Rating, TextField, Typography } from '@mui/material';
-import { Square } from '@mui/icons-material';
-import PieceList from './PieceList';
+import { Divider, FormControlLabel, FormGroup, Rating } from '@mui/material';
 
 type Props = {}
 
@@ -35,42 +31,27 @@ class DrivingPage extends Component<Props, State> {
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.efficiency} onChange={(e, val)=>{this.context.data.rate.setEfficiency(val || 0)}}/>}
-                label="Efficiency"
+                control={<Rating max={3} size="large" value={this.context.data.rate.intake} onChange={(e, val)=>{this.context.data.rate.setIntake(val || 0)}}/>}
+                label="Intaking"
                 
                  />
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.precision} onChange={(e, val)=>{this.context.data.rate.setPrecision(val || 0)}}/>}
-                label="Precision"
+                control={<Rating max={3} size="large" value={this.context.data.rate.speed} onChange={(e, val)=>{this.context.data.rate.setSpeed(val || 0)}}/>}
+                label="Driving Speed"
                  />
             </FormGroup>
-            <Divider variant="middle" flexItem={true}>Intaking Consistency/Speed</Divider>
-            <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
-              <FormControlLabel 
-                labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.intakeCone} onChange={(e, val)=>{this.context.data.rate.setIntakeCone(val || 0)}}/>}
-                label="Cone"
-                 />
-              <FormControlLabel 
-                labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.intakeCube} onChange={(e, val)=>{this.context.data.rate.setIntakeCube(val || 0)}}/>}
-                label="Cube"
-                 />
-
-            </FormGroup>
-
             <Divider variant="middle" flexItem={true}>Scoring Consistency/Speed</Divider>
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.placeCone} onChange={(e, val)=>{this.context.data.rate.setPlaceCone(val || 0)}}/>}
-                label="Cone"
+                control={<Rating max={3} size="large" value={this.context.data.rate.speaker} onChange={(e, val)=>{this.context.data.rate.setSpeaker(val || 0)}}/>}
+                label="Speaker"
                  />
               <FormControlLabel 
                 labelPlacement='bottom'
-                control={<Rating max={3} size="large" value={this.context.data.rate.placeCube} onChange={(e, val)=>{this.context.data.rate.setPlaceCube(val || 0)}}/>}
-                label="Cube"
+                control={<Rating max={3} size="large" value={this.context.data.rate.amp} onChange={(e, val)=>{this.context.data.rate.setAmp(val || 0)}}/>}
+                label="Amp"
                  />
 
             </FormGroup>

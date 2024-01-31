@@ -1,11 +1,9 @@
-import React, { Component, RefObject } from 'react'
-import {autorun} from 'mobx'
+import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
-import { Badge, Button, Checkbox, Divider, FormControlLabel, FormGroup, IconButton, Radio, RadioGroup, TextField } from '@mui/material';
-import { Square } from '@mui/icons-material';
+import { Checkbox, Divider, FormControlLabel, FormGroup, Radio, RadioGroup } from '@mui/material';
 import PieceList from './PieceList';
+import PieceEntry from './PieceEntry';
 
 type Props = {}
 
@@ -32,13 +30,9 @@ class AutoPage extends Component<Props, State> {
       <>
         <div style={{display: (this.context.data.page == 1) ? "block": "none", marginBottom:"10px"}}>
             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
-              <PieceList pieceList={this.context.data.autoCones} color="yellow" undoSide='right'></PieceList>
-              <div style={{display:"flex", flexDirection:"column", flexGrow:1, justifyContent:"space-around", fontSize: "200%"}}>
-                <div>H</div>
-                <div>M</div>
-                <div>L</div>
-              </div>
-              <PieceList pieceList={this.context.data.autoCubes} color="purple" undoSide='left'></PieceList>
+              <PieceEntry piece={this.context.data.autoSpeaker} color="blue" undoSide='right'></PieceEntry>
+              <span>SPKR | AMP</span>
+              <PieceEntry piece={this.context.data.autoAmp} color="blue" undoSide='left'></PieceEntry>
             </div>
             <div>
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>
@@ -48,7 +42,7 @@ class AutoPage extends Component<Props, State> {
                 control={<Checkbox checked={this.context.data.autoCrossed}/>} label="Cross Line"
                 value={this.context.data.autoCrossed} onChange={(e, val)=>{this.context.data.setAutoCross(val)}} />
             </FormGroup>
-            <Divider>Climb</Divider>
+            {/* <Divider>Climb</Divider>
             <FormGroup row={true} style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", flexWrap:"nowrap"}}>
               <RadioGroup
                 row
@@ -62,7 +56,7 @@ class AutoPage extends Component<Props, State> {
                 <FormControlLabel value={2} control={<Radio />} label="Level" labelPlacement="bottom"/>
 
               </RadioGroup>
-              </FormGroup>
+              </FormGroup> */}
               {/* <FormControlLabel
                 style={{flex:"0 0 25%"}}
                 labelPlacement='bottom'

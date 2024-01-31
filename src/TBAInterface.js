@@ -15,14 +15,14 @@ export function getTeams(eventCode) {
 		xmlhttp.open("GET", url, true);
 		xmlhttp.setRequestHeader("X-TBA-Auth-Key", authKey);
 		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 ) {
-				if (this.status == 200) {
+			if (this.readyState === 4 ) {
+				if (this.status === 200) {
 				var response = this.responseText;
 				teams = JSON.parse(response);
 				window.localStorage.setItem(`${eventCode}-teams`, response);
 				console.log("fetched teams from TBA");
 				}
-				else if (this.status == 0) {
+				else if (this.status === 0) {
 					console.log("could not reach TBA");
 					var teamsStr = window.localStorage.getItem(`${eventCode}-teams`);
 					if(teamsStr != null) {
@@ -47,7 +47,7 @@ export function getTeams(eventCode) {
 
 export function getTeamsForMatch(eventCode, matchNum, level) {
  var matchData = getMatch(eventCode + "_" + level + matchNum);
- if (matchData == null) {
+ if (matchData === null) {
 	return [];
  } 
  if ( !( "red" in matchData && "blue" in matchData)) {
@@ -70,7 +70,7 @@ function getMatch(matchKey){
 	if(matchKey !== undefined){
 		if (schedule) {
 			var ret = {};
-			Array.from(schedule).forEach(match => ret = match.key == matchKey ? match.alliances : ret);
+			Array.from(schedule).forEach(match => ret = match.key === matchKey ? match.alliances : ret);
 			console.log(ret)
 			return ret;
 		}
@@ -89,14 +89,14 @@ export function getSchedule(eventCode) {
 		xmlhttp.open("GET", url, true);
 		xmlhttp.setRequestHeader("X-TBA-Auth-Key", authKey);
 		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 ) {
-				if (this.status == 200) {
+			if (this.readyState === 4 ) {
+				if (this.status === 200) {
 				var response = this.responseText;
 				schedule = JSON.parse(response);
 				window.localStorage.setItem(`${eventCode}-schedule`, response);
 				return 0;
 				}
-				else if (this.status == 0) {
+				else if (this.status === 0) {
 					console.log("could not reach TBA");
 					var scheduleStr = window.localStorage.getItem(`${eventCode}-schedule`);
 					if(scheduleStr != null) {

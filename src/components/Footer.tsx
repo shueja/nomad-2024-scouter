@@ -1,13 +1,10 @@
-import React, { Component, RefObject } from 'react'
-import {autorun} from 'mobx'
-import QRCode from 'easyqrcodejs'
+import React, { Component } from 'react'
 import DocumentManagerContext from '../DocumentManager';
-import { Button, Fab, MobileStepper, Tab, Tabs } from '@mui/material';
+import { Button } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { observer } from 'mobx-react';
 import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
 
 type Props = {}
 

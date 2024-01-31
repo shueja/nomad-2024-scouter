@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react'
+import React, { Component } from 'react'
 import {autorun} from 'mobx'
 import QRCode from 'easyqrcodejs'
 import DocumentManagerContext from '../DocumentManager';
