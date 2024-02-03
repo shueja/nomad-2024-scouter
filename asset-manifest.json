@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/nomad-2024-scouter/static/css/main.d64dc936.css",
-    "main.js": "/nomad-2024-scouter/static/js/main.22063088.js",
+    "main.css": "/nomad-2024-scouter/static/css/main.e4660f52.css",
+    "main.js": "/nomad-2024-scouter/static/js/main.820739f8.js",
     "static/js/787.50e79133.chunk.js": "/nomad-2024-scouter/static/js/787.50e79133.chunk.js",
     "service-worker.js": "/nomad-2024-scouter/service-worker.js",
     "index.html": "/nomad-2024-scouter/index.html",
-    "main.d64dc936.css.map": "/nomad-2024-scouter/static/css/main.d64dc936.css.map",
-    "main.22063088.js.map": "/nomad-2024-scouter/static/js/main.22063088.js.map",
+    "main.e4660f52.css.map": "/nomad-2024-scouter/static/css/main.e4660f52.css.map",
+    "main.820739f8.js.map": "/nomad-2024-scouter/static/js/main.820739f8.js.map",
     "787.50e79133.chunk.js.map": "/nomad-2024-scouter/static/js/787.50e79133.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d64dc936.css",
-    "static/js/main.22063088.js"
+    "static/css/main.e4660f52.css",
+    "static/js/main.820739f8.js"
   ]
 }
