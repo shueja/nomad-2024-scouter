@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/nomad-2024-scouter/static/css/main.e4660f52.css",
-    "main.js": "/nomad-2024-scouter/static/js/main.91f425bd.js",
+    "main.js": "/nomad-2024-scouter/static/js/main.992e274e.js",
     "static/js/787.50e79133.chunk.js": "/nomad-2024-scouter/static/js/787.50e79133.chunk.js",
     "service-worker.js": "/nomad-2024-scouter/service-worker.js",
     "index.html": "/nomad-2024-scouter/index.html",
     "main.e4660f52.css.map": "/nomad-2024-scouter/static/css/main.e4660f52.css.map",
-    "main.91f425bd.js.map": "/nomad-2024-scouter/static/js/main.91f425bd.js.map",
+    "main.992e274e.js.map": "/nomad-2024-scouter/static/js/main.992e274e.js.map",
     "787.50e79133.chunk.js.map": "/nomad-2024-scouter/static/js/787.50e79133.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e4660f52.css",
-    "static/js/main.91f425bd.js"
+    "static/js/main.992e274e.js"
   ]
 }
